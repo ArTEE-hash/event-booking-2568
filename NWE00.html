@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ลงทะเบียนงานเลี้ยง "ร้อยรักจากใจ...สายใยผูกพัน" วันที่ 19 สิงหาคม 2568</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #e94560 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 48, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(233, 69, 96, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff7730 0%, #e94560 50%, #8b5cf6 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: white;
+            padding: 5px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .required {
+            color: #ff6b6b;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Kanit', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #ff7730;
+            box-shadow: 0 0 20px rgba(255, 119, 48, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-select option {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .table-info {
+            background: rgba(255, 119, 48, 0.1);
+            border: 1px solid rgba(255, 119, 48, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .table-info h3 {
+            color: #ff7730;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .table-info ul {
+            color: #ffffff;
+            padding-left: 20px;
+        }
+
+        .table-info li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff7730 0%, #e94560 50%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Kanit', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 119, 48, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 119, 48, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #ffffff;
+            font-size: 14px;
+            display: none;
+        }
+
+        .success-message {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.5);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #ffffff;
+            font-size: 14px;
+            display: none;
+        }
+
+        .ticket {
+            display: none;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            color: #1a1a2e;
+            border-radius: 20px;
+            padding: 0;
+            margin-top: 30px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ticket-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        .scan-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .scan-text {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border: 3px solid #333;
+            border-radius: 8px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .event-title {
+            background: linear-gradient(135deg, #ff7730, #e94560);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 15px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 119, 48, 0.3);
+        }
+
+        .event-details {
+            padding: 20px;
+            background: white;
+        }
+
+        .attendee-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 20px 0;
+            padding: 15px 0;
+            border-bottom: 2px dashed #dee2e6;
+        }
+
+        .attendee-name {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a1a2e;
+            flex: 1;
+        }
+
+        .table-info {
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .table-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e94560;
+        }
+
+        .seat-number {
+            font-size: 16px;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        .event-info {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .save-button {
+            width: 100%;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .save-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+        }
+
+        .ticket-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .ticket-field {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #ff7730;
+        }
+
+        .ticket-field strong {
+            color: #1a1a2e;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .ticket-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #856404;
+        }
+
+        .table-legend {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            color: white;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .legend-color.available {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+        }
+
+        .legend-color.occupied {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .legend-color.disabled {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+        }
+
+        .legend-color.selected {
+            background: linear-gradient(135deg, #ff7730, #e94560);
+            box-shadow: 0 0 10px rgba(255, 119, 48, 0.5);
+        }
+
+        /* Agency-specific table colors */
+        .table-seat.agency-สสจ-สมุทรปราการ {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+            color: #1f2937 !important;
+        }
+
+        .table-seat.agency-รพ-สมุทรปราการ {
+            background: linear-gradient(135deg, #1e40af, #1d4ed8) !important;
+            color: white !important;
+        }
+
+        .table-seat.agency-รพ-บางพลี {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7) !important;
+            color: white !important;
+        }
+
+        .table-seat.agency-รพ-พระสมุทรเจดีย์ฯ {
+            background: linear-gradient(135deg, #06b6d4, #0891b2) !important;
+            color: white !important;
+        }
+
+        .table-seat.agency-ผู้เกษียณอายุราชการ {
+            background: linear-gradient(135deg, #db2777, #be185d) !important;
+            color: white !important;
+        }
+
+        .table-seat.agency-สสอ-บางพลี {
+            background: linear-gradient(135deg, #3730a3, #4338ca) !important;
+            color: white !important;
+        }
+
+        .table-seat.agency-สสอ-พระสมุทรเจดีย์ {
+            background: linear-gradient(135deg, #0891b2, #0e7490) !important;
+            color: white !important;
+        }
+
+        .table-seat.agency-รพ-บางจาก {
+            background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+            color: white !important;
+        }
+
+        .table-seat.agency-สสอ-พระประแดง {
+            background: linear-gradient(135deg, #ea580c, #c2410c) !important;
+            color: white !important;
+        }
+
+        .table-seat.agency-รพ-บางบ่อ {
+            background: linear-gradient(135deg, #ec4899, #db2777) !important;
+            color: white !important;
+        }
+
+        .table-seat.agency-สสอ-บางบ่อ {
+            background: linear-gradient(135deg, #a855f7, #9333ea) !important;
+            color: white !important;
+        }
+
+        .table-seat.agency-สสอ-บางเสาธง {
+            background: linear-gradient(135deg, #84cc16, #65a30d) !important;
+            color: white !important;
+        }
+
+        .table-seat.agency-สสอ-เมือง {
+            background: linear-gradient(135deg, #fef3c7, #fde68a) !important;
+            color: #1f2937 !important;
+        }
+
+        .table-seat.agency-รพ-บางเสาธง {
+            background: linear-gradient(135deg, #f472b6, #ec4899) !important;
+            color: white !important;
+        }
+
+        .table-seat.agency-open {
+            background: rgba(255, 255, 255, 0.2) !important;
+            border: 2px dashed rgba(255, 255, 255, 0.4) !important;
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        /* Dimmed styles for non-selectable tables */
+        .table-seat.dimmed {
+            opacity: 0.3 !important;
+            filter: saturate(0.3) brightness(0.7) !important;
+            pointer-events: none !important;
+        }
+
+        .seating-chart {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-header {
+            text-align: center;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            position: relative;
+        }
+
+        .chart-header h4 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .stage-visual {
+            margin: 10px auto;
+            width: 300px;
+            height: 80px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 15px;
+            border: 3px solid #4a5568;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .stage-visual::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 30%, transparent 70%);
+            border-radius: 50%;
+            animation: spotlight 3s ease-in-out infinite;
+        }
+
+        .stage-visual::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.6) 0%, rgba(255, 215, 0, 0.3) 40%, transparent 70%);
+            border-radius: 50%;
+            animation: spotlight2 2.5s ease-in-out infinite reverse;
+        }
+
+        .spotlight3 {
+            position: absolute;
+            top: 50%;
+            right: 20%;
+            transform: translate(50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, rgba(173, 216, 230, 0.6) 0%, rgba(173, 216, 230, 0.3) 40%, transparent 70%);
+            border-radius: 50%;
+            animation: spotlight3 3.5s ease-in-out infinite;
+        }
+
+        @keyframes spotlight {
+            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        @keyframes spotlight2 {
+            0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.8); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        @keyframes spotlight3 {
+            0%, 100% { opacity: 0.3; transform: translate(50%, -50%) scale(0.9); }
+            50% { opacity: 0.7; transform: translate(50%, -50%) scale(1.3); }
+        }
+
+        .entrance-door {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 20px;
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            border-radius: 3px;
+            border: 2px solid #374151;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .entrance-door::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #374151;
+        }
+
+        .vip-section, .premium-section, .general-section {
+            margin: 20px 0;
+        }
+
+        .vip-section h5, .premium-section h5, .general-section h5 {
+            color: #ff7730;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .table-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .table-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(11, 1fr);
+            gap: 10px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .table-seat {
+            min-width: 80px;
+            min-height: 80px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .table-seat.available {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: white;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.3);
+        }
+
+        .table-seat.available:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .table-seat.occupied {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .table-seat.disabled {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            color: rgba(255, 255, 255, 0.6);
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .table-seat.spacer {
+            background: transparent !important;
+            border: 2px dashed rgba(255, 255, 255, 0.2) !important;
+            color: rgba(255, 255, 255, 0.3) !important;
+            cursor: not-allowed !important;
+            opacity: 0.3 !important;
+        }
+
+        .table-seat.spacer:hover {
+            transform: none !important;
+            box-shadow: none !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .table-seat.selected {
+            background: linear-gradient(135deg, #ff7730, #e94560);
+            color: white;
+            border-color: #fbbf24;
+            box-shadow: 0 0 20px rgba(255, 119, 48, 0.6);
+            transform: scale(1.05);
+        }
+
+        .table-label {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .seat-count {
+            font-size: 10px;
+            opacity: 0.9;
+            line-height: 1.2;
+        }
+
+        .seat-status {
+            font-size: 9px;
+            opacity: 0.8;
+            margin-top: 2px;
+            line-height: 1.1;
+        }
+
+        .vip-table {
+            min-width: 180px;
+            min-height: 120px;
+        }
+
+        .premium-table {
+            min-width: 100px;
+            min-height: 90px;
+        }
+
+        .selected-table-display {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .selected-table-display.has-selection {
+            border-color: #ff7730;
+            background: rgba(255, 119, 48, 0.1);
+            box-shadow: 0 0 15px rgba(255, 119, 48, 0.2);
+        }
+
+        .no-selection {
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            text-align: center;
+        }
+
+        .selected-info {
+            text-align: center;
+            color: white;
+        }
+
+        .selected-info .table-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ff7730;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .selected-info .table-details {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .table-grid {
+                grid-template-columns: repeat(7, 1fr);
+                grid-template-rows: repeat(11, 1fr);
+                gap: 5px;
+            }
+
+            .table-seat {
+                min-width: 40px;
+                min-height: 40px;
+                font-size: 10px;
+            }
+
+            .vip-table {
+                min-width: 100px;
+                min-height: 60px;
+            }
+
+            #connectionStatus {
+                font-size: 10px !important;
+                margin-top: 3px !important;
+            }
+
+            .ticket {
+                max-width: 350px;
+                margin: 20px auto;
+            }
+
+            .attendee-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .table-info {
+                text-align: left;
+            }
+
+            .scan-text {
+                font-size: 20px;
+                letter-spacing: 2px;
+            }
+
+            .qr-code {
+                width: 100px;
+                height: 100px;
+            }
+
+            .event-title {
+                font-size: 16px;
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%93%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88.png" alt="Logo กระทรวงสาธารณสุข">
+            </div>
+            <h1>"ร้อยรักจากใจ...สายใยผูกพัน"</h1>
+            <h2 style="font-size: 20px; margin: 10px 0; opacity: 0.95;">Beautiful Party</h2>
+            <p><strong>วันที่ 19 สิงหาคม 2568</strong></p>
+            <p><strong>เวลา 18.00-22.00 น.</strong></p>
+            <p><strong>PIMARN GRAND BALLROOM</strong></p>
+            <p>ห้องประชุมพิมาน แกรนด์ บอลรูม</p>
+            <p>ณ โรงแรมแกรนด์ พาลาสโซ่ พัทยา จังหวัดชลบุรี</p>
+        </div>
+
+        <div id="registrationForm" class="form-container">
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+            
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label class="form-label" for="name">ชื่อผู้จอง <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" class="form-input" required placeholder="กรุณากรอกชื่อผู้จอง">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="agency">หน่วยงาน <span class="required">*</span></label>
+                    <select id="agency" name="agency" class="form-select" required>
+                        <option value="">-- เลือกหน่วยงาน --</option>
+                        <option value="สสจ.สมุทรปราการ">สสจ.สมุทรปราการ</option>
+                        <option value="รพ.สมุทรปราการ">รพ.สมุทรปราการ</option>
+                        <option value="รพ.บางพลี">รพ.บางพลี</option>
+                        <option value="รพ.บางบ่อ">รพ.บางบ่อ</option>
+                        <option value="รพ.พระสมุทรเจดีย์ฯ">รพ.พระสมุทรเจดีย์ฯ</option>
+                        <option value="รพ.บางจาก">รพ.บางจาก</option>
+                        <option value="รพ.บางเสาธง">รพ.บางเสาธง</option>
+                        <option value="สสอ.เมืองสมุทรปราการ">สสอ.เมืองสมุทรปราการ</option>
+                        <option value="สสอ.บางพลี">สสอ.บางพลี</option>
+                        <option value="สสอ.พระประแดง">สสอ.พระประแดง</option>
+                        <option value="สสอ.พระสมุทรเจดีย์">สสอ.พระสมุทรเจดีย์</option>
+                        <option value="สสอ.บางบ่อ">สสอ.บางบ่อ</option>
+                        <option value="สสอ.บางเสาธง">สสอ.บางเสาธง</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="type">ประเภท <span class="required">*</span></label>
+                    <select id="type" name="type" class="form-select" required onchange="updateTableOptions()">
+                        <option value="">-- เลือกประเภท --</option>
+                        <option value="VIP">VIP</option>
+                        <option value="ผู้เกษียณอายุราชการ">ผู้เกษียณอายุราชการ</option>
+                        <option value="ผู้เข้าร่วมงานทั่วไป">ผู้เข้าร่วมงานทั่วไป</option>
+                        <option value="ทีมผู้จัดงาน">ทีมผู้จัดงาน</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="phone">หมายเลขโทรศัพท์ <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" class="form-input" required placeholder="กรุณากรอกหมายเลขโทรศัพท์">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="seats">จำนวนที่นั่ง <span class="required">*</span></label>
+                    <input type="number" id="seats" name="seats" class="form-input" required min="1" placeholder="กรุณากรอกจำนวนที่นั่ง">
+                </div>
+
+                <div class="table-info">
+                    <h3>🗺️ คลิกเลือกโต๊ะจากผังที่นั่ง</h3>
+                    <div style="background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 8px; padding: 15px; margin: 15px 0; color: #1f2937;">
+                        <div style="font-size: 14px; margin-bottom: 8px;">
+                            <strong>📊 ระบบเชื่อมต่อ Google Sheets แบบเรียลไทม์</strong>
+                        </div>
+                        <div style="font-size: 12px; color: #374151;">
+                            ข้อมูลการลงทะเบียนจะถูกบันทึกอัตโนมัติใน Google Sheets และสร้างรหัสบัตรเฉพาะให้ทันที
+                            <div id="connectionStatus" style="margin-top: 5px; font-size: 11px; font-weight: 600;">
+                                🔄 กำลังเชื่อมต่อระบบ...
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-legend">
+                        <div class="legend-item">
+                            <div class="legend-color available"></div>
+                            <span>ว่าง</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color occupied"></div>
+                            <span>จองแล้ว</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color disabled"></div>
+                            <span>ไม่สามารถเลือกได้</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color selected"></div>
+                            <span>เลือกแล้ว</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seating-chart" id="seatingChart" style="display: none;">
+                    <div class="chart-header">
+                        <h4>🎭 เวที / Stage</h4>
+                        <div class="stage-visual">
+                            <div class="spotlight3"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- VIP Section -->
+                    <div class="vip-section">
+                        <h5>VIP Section (25 ที่นั่ง)</h5>
+                        <div class="table-group">
+                            <div class="table-seat vip-table available" data-table="A1-A2" data-capacity="25">
+                                <span class="table-label">VIP</span>
+                                <div class="seat-count">25 ที่นั่ง</div>
+                                <div class="seat-status">ว่าง: <span class="available-count">25</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- General Section -->
+                    <div class="general-section">
+                        <h5>โซนทั่วไป (11 แถว × 62 โต๊ะใช้งานได้ × 8 ที่นั่ง/โต๊ะ)</h5>
+                        <div class="table-grid" id="generalTables">
+                            <!-- C tables will be generated here -->
+                        </div>
+                    </div>
+
+                    <!-- Entrance Door -->
+                    <div style="position: relative; text-align: center; margin-top: 30px;">
+                        <div class="entrance-door">ทางเข้า-ออก</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="selectedTable">โต๊ะที่เลือก <span class="required">*</span></label>
+                    <div class="selected-table-display" id="selectedTableDisplay">
+                        <div class="no-selection">กรุณาเลือกประเภทก่อน แล้วคลิกเลือกโต๊ะจากผังด้านบน</div>
+                    </div>
+                    <input type="hidden" id="table" name="table" required>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    📝 ลงทะเบียนและออกบัตรเข้าร่วมงาน
+                </button>
+
+                <div class="loading" id="loading">
+                    <p>⏳ กำลังดำเนินการ...</p>
+                </div>
+            </form>
+
+            <div class="ticket" id="ticket">
+                <div class="ticket-header">
+                    <div class="scan-section">
+                        <div class="scan-text">SCAN HERE</div>
+                        <div class="qr-code" id="qrCode">
+                            QR CODE
+                        </div>
+                    </div>
+                    
+                    <div style="color: #8b5cf6; font-size: 16px; font-weight: 600; margin-bottom: 10px;">
+                        งานเลี้ยงสังสรรค์
+                    </div>
+                    
+                    <div class="event-title">
+                        "ร้อยรักจากใจ...สายใยผูกพัน"
+                    </div>
+                    
+                    <div style="color: white; font-size: 16px; font-weight: 600; margin-top: 10px;">
+                        19 สิงหาคม 2568<br>
+                        เวลา 18.00-22.00 น.<br>
+                        ห้องพิมาน แกรนด์ บอลรูม ชั้น 2<br>
+                        โรงแรมแกรนด์ พาลาสโซ่ พัทยา
+                    </div>
+                    
+                    <div style="position: absolute; top: 15px; right: 20px; color: white; font-size: 48px; font-weight: 300; opacity: 0.6;">
+                        Beautiful
+                    </div>
+                    <div style="position: absolute; top: 55px; right: 20px; color: #fbbf24; font-size: 32px; font-weight: 700; font-style: italic;">
+                        Party
+                    </div>
+                </div>
+
+                <div class="event-details">
+                    <div class="attendee-info">
+                        <div class="attendee-name" id="attendeeName">
+                            <!-- ชื่อผู้จอง -->
+                        </div>
+                        <div class="table-info">
+                            <div class="table-number" id="tableNumber">
+                                <!-- หมายเลขโต๊ะ -->
+                            </div>
+                            <div class="seat-number" id="seatNumber">
+                                <!-- หมายเลขที่นั่ง -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="border-bottom: 3px solid #333; margin: 0 -20px 20px -20px;"></div>
+                    
+                    <button onclick="saveAndReturn()" class="save-button">
+                        ✅ บันทึกการลงทะเบียน
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let selectedTable = null;
+        let tableAvailability = {};
+        let isOnline = false;
+        
+        // Google Apps Script URL และ Google Sheets ID
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzbBisBL969C1ic2nxJAG1P1_n0mkRkutPkZzJXzdUDgRXqmwp39HYrWDfVHSkiJY4yuQ/exec";
+        const SHEETS_ID = '19xYB-9LDTXyGMF8SivpjJVIysKK0ZuBGNwCa8vhoA30';
+        
+        // Show error message
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Show success message
+        function showSuccess(message) {
+            const successElement = document.getElementById('successMessage');
+            successElement.textContent = message;
+            successElement.style.display = 'block';
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Generate ticket ID
+        function generateTicketId() {
+            const now = new Date();
+            const year = now.getFullYear().toString().slice(-2);
+            const month = (now.getMonth() + 1).toString().padStart(2, '0');
+            const day = now.getDate().toString().padStart(2, '0');
+            const hour = now.getHours().toString().padStart(2, '0');
+            const minute = now.getMinutes().toString().padStart(2, '0');
+            const second = now.getSeconds().toString().padStart(2, '0');
+            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            
+            return `BT${year}${month}${day}${hour}${minute}${second}${random}`;
+        }
+
+        // Test connection to Google Sheets
+        async function testConnection() {
+            const statusElement = document.getElementById('connectionStatus');
+            
+            try {
+                statusElement.style.color = '#ff7730';
+                statusElement.innerText = '🔄 กำลังทดสอบการเชื่อมต่อ...';
+                
+                // Test with a simple ping request
+                const response = await fetch(`${SCRIPT_URL}?action=ping&sheetsId=${SHEETS_ID}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && data.success) {
+                        isOnline = true;
+                        statusElement.style.color = '#22c55e';
+                        statusElement.innerText = '✅ เชื่อมต่อ Google Sheets สำเร็จ';
+                        return true;
+                    }
+                }
+                
+                throw new Error('Connection failed');
+                
+            } catch (error) {
+                console.error('Connection test failed:', error);
+                isOnline = false;
+                statusElement.style.color = '#e94560';
+                statusElement.innerText = '❌ ไม่สามารถเชื่อมต่อได้ - กรุณาตรวจสอบการตั้งค่า';
+                return false;
+            }
+        }
+
+        // Submit data to Google Sheets with better error handling
+        async function submitToGoogleSheets(formData) {
+            if (!isOnline) {
+                throw new Error('ระบบไม่สามารถเชื่อมต่อกับ Google Sheets ได้ กรุณาตรวจสอบการตั้งค่า');
+            }
+            
+            try {
+                const ticketId = generateTicketId();
+                
+                const submissionData = {
+                    action: 'addBooking',
+                    sheetsId: SHEETS_ID,
+                    data: {
+                        timestamp: new Date().toISOString(),
+                        name: formData.name,
+                        agency: formData.agency,
+                        type: formData.type,
+                        phone: formData.phone,
+                        seats: parseInt(formData.seats),
+                        table: formData.table,
+                        ticketId: ticketId,
+                        status: 'confirmed'
+                    }
+                };
+
+                console.log('Submitting data:', submissionData);
+
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(submissionData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                console.log('Server response:', result);
+                
+                if (result.success) {
+                    return { 
+                        success: true, 
+                        ticketId: ticketId, 
+                        rowNumber: result.rowNumber || 'N/A',
+                        data: result.data
+                    };
+                } else {
+                    throw new Error(result.error || 'ไม่ทราบสาเหตุข้อผิดพลาด');
+                }
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                
+                // Give specific error messages
+                if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    throw new Error('ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต');
+                } else if (error.message.includes('CORS')) {
+                    throw new Error('ปัญหาการอนุญาตการเข้าถึงข้อมูล กรุณาติดต่อผู้ดูแลระบบ');
+                } else {
+                    throw error;
+                }
+            }
+        }
+
+        // Load table availability from Google Sheets with better error handling
+        async function loadTableAvailabilityFromSheets() {
+            if (!isOnline) {
+                return null;
+            }
+            
+            const statusElement = document.getElementById('connectionStatus');
+            
+            try {
+                statusElement.style.color = '#ff7730';
+                statusElement.innerText = '🔄 กำลังโหลดข้อมูลจากระบบ...';
+                
+                const response = await fetch(`${SCRIPT_URL}?action=getAvailability&sheetsId=${SHEETS_ID}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success && data.availability) {
+                        statusElement.style.color = '#22c55e';
+                        statusElement.innerText = '✅ ข้อมูลอัปเดตแล้ว - เรียลไทม์';
+                        return data.availability;
+                    }
+                }
+                
+                throw new Error('Invalid response from server');
+                
+            } catch (error) {
+                console.error('Error loading availability:', error);
+                statusElement.style.color = '#e94560';
+                statusElement.innerText = '⚠️ ไม่สามารถโหลดข้อมูลได้';
+                return null;
+            }
+        }
+        
+        // Initialize the seating chart
+        function initializeSeatingChart() {
+            generateGeneralTables();
+            loadTableAvailability();
+        }
+
+        // Generate 11 rows of tables for general section
+        function generateGeneralTables() {
+            const generalTablesContainer = document.getElementById('generalTables');
+            generalTablesContainer.innerHTML = '';
+            
+            const spacerPositions = [3, 10, 17, 24, 31, 38, 45, 52, 59, 66, 73];
+            const emptyTableIds = ['C61', 'C62', 'C63', 'C66'];
+            
+            const tableAssignments = {
+                'C01': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                'C07': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                'C13': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                'C19': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                'C25': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                'C31': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                'C37': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                'C43': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                'C44': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                'C49': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                'C50': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                'C55': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                'C56': { agency: 'สสจ.สมุทรปราการ', class: 'agency-สสจ-สมุทรปราการ' },
+                
+                'C02': { agency: 'รพ.สมุทรปราการ', class: 'agency-รพ-สมุทรปราการ' },
+                'C08': { agency: 'รพ.สมุทรปราการ', class: 'agency-รพ-สมุทรปราการ' },
+                
+                'C14': { agency: 'รพ.บางพลี', class: 'agency-รพ-บางพลี' },
+                'C20': { agency: 'รพ.บางพลี', class: 'agency-รพ-บางพลี' },
+                'C26': { agency: 'รพ.บางพลี', class: 'agency-รพ-บางพลี' },
+                
+                'C32': { agency: 'รพ.พระสมุทรเจดีย์ฯ', class: 'agency-รพ-พระสมุทรเจดีย์ฯ' },
+                'C38': { agency: 'รพ.พระสมุทรเจดีย์ฯ', class: 'agency-รพ-พระสมุทรเจดีย์ฯ' },
+                
+                'C03': { agency: 'ผู้เกษียณอายุราชการ', class: 'agency-ผู้เกษียณอายุราชการ' },
+                'C04': { agency: 'ผู้เกษียณอายุราชการ', class: 'agency-ผู้เกษียณอายุราชการ' },
+                'C09': { agency: 'ผู้เกษียณอายุราชการ', class: 'agency-ผู้เกษียณอายุราชการ' },
+                'C10': { agency: 'ผู้เกษียณอายุราชการ', class: 'agency-ผู้เกษียณอายุราชการ' },
+                'C15': { agency: 'ผู้เกษียณอายุราชการ', class: 'agency-ผู้เกษียณอายุราชการ' },
+                'C16': { agency: 'ผู้เกษียณอายุราชการ', class: 'agency-ผู้เกษียณอายุราชการ' },
+                'C21': { agency: 'ผู้เกษียณอายุราชการ', class: 'agency-ผู้เกษียณอายุราชการ' },
+                'C22': { agency: 'ผู้เกษียณอายุราชการ', class: 'agency-ผู้เกษียณอายุราชการ' },
+                
+                'C28': { agency: 'รพ.บางจาก', class: 'agency-รพ-บางจาก' },
+                'C34': { agency: 'รพ.บางจาก', class: 'agency-รพ-บางจาก' },
+                'C40': { agency: 'รพ.บางจาก', class: 'agency-รพ-บางจาก' },
+                
+                'C46': { agency: 'สสอ.พระประแดง', class: 'agency-สสอ-พระประแดง' },
+                'C52': { agency: 'สสอ.พระประแดง', class: 'agency-สสอ-พระประแดง' },
+                'C58': { agency: 'สสอ.พระประแดง', class: 'agency-สสอ-พระประแดง' },
+                'C64': { agency: 'สสอ.พระประแดง', class: 'agency-สสอ-พระประแดง' },
+                'C65': { agency: 'สสอ.พระประแดง', class: 'agency-สสอ-พระประแดง' },
+                
+                'C05': { agency: 'รพ.บางบ่อ', class: 'agency-รพ-บางบ่อ' },
+                'C11': { agency: 'รพ.บางบ่อ', class: 'agency-รพ-บางบ่อ' },
+                'C17': { agency: 'รพ.บางบ่อ', class: 'agency-รพ-บางบ่อ' },
+                'C23': { agency: 'รพ.บางบ่อ', class: 'agency-รพ-บางบ่อ' },
+                
+                'C29': { agency: 'สสอ.บางบ่อ', class: 'agency-สสอ-บางบ่อ' },
+                'C35': { agency: 'สสอ.บางบ่อ', class: 'agency-สสอ-บางบ่อ' },
+                'C41': { agency: 'สสอ.บางบ่อ', class: 'agency-สสอ-บางบ่อ' },
+                
+                'C47': { agency: 'สสอ.บางเสาธง', class: 'agency-สสอ-บางเสาธง' },
+                'C53': { agency: 'สสอ.บางเสาธง', class: 'agency-สสอ-บางเสาธง' },
+                'C59': { agency: 'สสอ.บางเสาธง', class: 'agency-สสอ-บางเสาธง' },
+                
+                'C06': { agency: 'สสอ.เมืองสมุทรปราการ', class: 'agency-สสอ-เมือง' },
+                'C12': { agency: 'สสอ.เมืองสมุทรปราการ', class: 'agency-สสอ-เมือง' },
+                'C18': { agency: 'สสอ.เมืองสมุทรปราการ', class: 'agency-สสอ-เมือง' },
+                'C24': { agency: 'สสอ.เมืองสมุทรปราการ', class: 'agency-สสอ-เมือง' },
+                'C30': { agency: 'สสอ.เมืองสมุทรปราการ', class: 'agency-สสอ-เมือง' },
+                'C36': { agency: 'สสอ.เมืองสมุทรปราการ', class: 'agency-สสอ-เมือง' },
+                'C42': { agency: 'สสอ.เมืองสมุทรปราการ', class: 'agency-สสอ-เมือง' },
+                
+                'C48': { agency: 'รพ.บางเสาธง', class: 'agency-รพ-บางเสาธง' },
+                'C54': { agency: 'รพ.บางเสาธง', class: 'agency-รพ-บางเสาธง' },
+                'C60': { agency: 'รพ.บางเสาธง', class: 'agency-รพ-บางเสาธง' },
+                
+                'C27': { agency: 'สสอ.บางพลี', class: 'agency-สสอ-บางพลี' },
+                'C33': { agency: 'สสอ.บางพลี', class: 'agency-สสอ-บางพลี' },
+                'C39': { agency: 'สสอ.บางพลี', class: 'agency-สสอ-บางพลี' },
+                
+                'C45': { agency: 'สสอ.พระสมุทรเจดีย์', class: 'agency-สสอ-พระสมุทรเจดีย์' },
+                'C51': { agency: 'สสอ.พระสมุทรเจดีย์', class: 'agency-สสอ-พระสมุทรเจดีย์' },
+                'C57': { agency: 'สสอ.พระสมุทรเจดีย์', class: 'agency-สสอ-พระสมุทรเจดีย์' }
+            };
+            
+            let tableCounter = 1;
+            
+            for (let position = 0; position < 77; position++) {
+                const tableElement = document.createElement('div');
+                
+                if (spacerPositions.includes(position)) {
+                    tableElement.className = 'table-seat spacer';
+                    tableElement.innerHTML = `
+                        <span class="table-label">.</span>
+                        <div class="seat-count">&nbsp;</div>
+                    `;
+                } else {
+                    const tableId = `C${tableCounter.toString().padStart(2, '0')}`;
+                    
+                    if (emptyTableIds.includes(tableId)) {
+                        tableElement.className = 'table-seat spacer';
+                        tableElement.innerHTML = `
+                            <span class="table-label">.</span>
+                            <div class="seat-count">&nbsp;</div>
+                        `;
+                    } else {
+                        const assignment = tableAssignments[tableId];
+                        
+                        tableElement.className = 'table-seat available';
+                        tableElement.setAttribute('data-table', tableId);
+                        tableElement.setAttribute('data-capacity', '8');
+                        
+                        if (assignment) {
+                            tableElement.classList.add(assignment.class);
+                            tableElement.setAttribute('data-agency', assignment.agency);
+                        }
+                        
+                        const agencyText = assignment ? assignment.agency.substring(0, 10) : 'ทั่วไป';
+                        tableElement.innerHTML = `
+                            <span class="table-label">${tableId}</span>
+                            <div class="seat-count">8 ที่นั่ง</div>
+                            <div class="seat-status">ว่าง: <span class="available-count">8</span></div>
+                            <div style="font-size: 8px; margin-top: 2px; opacity: 0.8;">${agencyText}</div>
+                        `;
+                        
+                        tableElement.addEventListener('click', () => selectTable(tableId, 8));
+                    }
+                    tableCounter++;
+                }
+                
+                generalTablesContainer.appendChild(tableElement);
+            }
+        }
+
+        // Load table availability
+        async function loadTableAvailability() {
+            const serverAvailability = await loadTableAvailabilityFromSheets();
+            
+            if (serverAvailability) {
+                tableAvailability = serverAvailability;
+            } else {
+                // Initialize with all tables empty
+                tableAvailability = {
+                    'A1-A2': { capacity: 25, booked: 0 }
+                };
+                
+                const emptyTables = ['C61', 'C62', 'C63', 'C66'];
+                for (let i = 1; i <= 66; i++) {
+                    const tableId = `C${i.toString().padStart(2, '0')}`;
+                    if (!emptyTables.includes(tableId)) {
+                        tableAvailability[tableId] = { 
+                            capacity: 8, 
+                            booked: 0
+                        };
+                    }
+                }
+            }
+            
+            updateTableDisplay();
+        }
+
+        // Update table display based on availability and user type
+        function updateTableDisplay() {
+            const userType = document.getElementById('type').value;
+            
+            document.querySelectorAll('.table-seat').forEach(seat => {
+                if (seat.classList.contains('spacer')) {
+                    return;
+                }
+                
+                const tableId = seat.getAttribute('data-table');
+                const capacity = parseInt(seat.getAttribute('data-capacity'));
+                const availability = tableAvailability[tableId];
+                
+                if (!availability) return;
+                
+                const availableSeats = capacity - availability.booked;
+                const isAvailable = availableSeats > 0;
+                const canSelect = isTableSelectableForUser(tableId, userType);
+                
+                const availableCountSpan = seat.querySelector('.available-count');
+                if (availableCountSpan) {
+                    availableCountSpan.textContent = availableSeats;
+                }
+                
+                seat.className = seat.className.replace(/\b(available|occupied|disabled|selected|dimmed)\b/g, '');
+                
+                if (!canSelect) {
+                    if (userType && userType !== '') {
+                        seat.classList.add('dimmed');
+                    } else {
+                        seat.classList.add('disabled');
+                    }
+                } else if (!isAvailable) {
+                    seat.classList.add('occupied');
+                } else if (selectedTable === tableId) {
+                    seat.classList.add('selected');
+                } else {
+                    seat.classList.add('available');
+                }
+            });
+        }
+
+        // Check if table is selectable for user type
+        function isTableSelectableForUser(tableId, userType) {
+            const userAgency = document.getElementById('agency').value;
+            const tableElement = document.querySelector(`[data-table="${tableId}"]`);
+            const tableAgency = tableElement ? tableElement.getAttribute('data-agency') : null;
+            
+            switch(userType) {
+                case 'VIP':
+                    return tableId === 'A1-A2';
+                case 'ผู้เกษียณอายุราชการ':
+                    return (tableAgency && tableAgency === 'ผู้เกษียณอายุราชการ');
+                case 'ผู้เข้าร่วมงานทั่วไป':
+                    if (!tableId.startsWith('C')) return false;
+                    return !tableAgency || tableAgency === userAgency;
+                case 'ทีมผู้จัดงาน':
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        // Select a table
+        function selectTable(tableId, capacity) {
+            const userType = document.getElementById('type').value;
+            const userAgency = document.getElementById('agency').value;
+            
+            if (!userType) {
+                alert('กรุณาเลือกประเภทก่อน');
+                return;
+            }
+            
+            if (!userAgency && userType === 'ผู้เข้าร่วมงานทั่วไป') {
+                alert('กรุณาเลือกหน่วยงานก่อน');
+                return;
+            }
+            
+            if (!isTableSelectableForUser(tableId, userType)) {
+                const tableElement = document.querySelector(`[data-table="${tableId}"]`);
+                const tableAgency = tableElement ? tableElement.getAttribute('data-agency') : null;
+                
+                if (tableAgency && tableAgency !== userAgency && userType === 'ผู้เข้าร่วมงานทั่วไป') {
+                    showError(`โต๊ะนี้จัดสรรสำหรับ ${tableAgency} เท่านั้น กรุณาเลือกโต๊ะที่เหมาะสมกับหน่วยงานของคุณ`);
+                } else {
+                    showError('คุณไม่สามารถเลือกโต๊ะนี้ได้ กรุณาเลือกโต๊ะที่เหมาะสมกับประเภทของคุณ');
+                }
+                return;
+            }
+            
+            const availability = tableAvailability[tableId];
+            if (!availability) return;
+            
+            const availableSeats = capacity - availability.booked;
+            if (availableSeats <= 0) {
+                showError('โต๊ะนี้เต็มแล้ว กรุณาเลือกโต๊ะอื่น');
+                return;
+            }
+            
+            selectedTable = tableId;
+            document.getElementById('table').value = tableId;
+            
+            updateTableDisplay();
+            updateSelectedTableDisplay(tableId, capacity, availableSeats);
+            
+            document.getElementById('selectedTableDisplay').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+
+        // Update selected table display
+        function updateSelectedTableDisplay(tableId, capacity, availableSeats) {
+            const display = document.getElementById('selectedTableDisplay');
+            display.className = 'selected-table-display has-selection';
+            display.innerHTML = `
+                <div class="selected-info">
+                    <span class="table-name">โต๊ะ ${tableId}</span>
+                    <div class="table-details">
+                        จำนวนที่นั่งทั้งหมด: ${capacity} | 
+                        ที่นั่งว่าง: ${availableSeats}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Update type selection and show seating chart
+        function updateTableOptions() {
+            const type = document.getElementById('type').value;
+            const seatingChart = document.getElementById('seatingChart');
+            const selectedDisplay = document.getElementById('selectedTableDisplay');
+            
+            selectedTable = null;
+            document.getElementById('table').value = '';
+            selectedDisplay.className = 'selected-table-display';
+            selectedDisplay.innerHTML = '<div class="no-selection">กรุณาคลิกเลือกโต๊ะจากผังด้านบน</div>';
+            
+            if (!type) {
+                seatingChart.style.display = 'none';
+                selectedDisplay.innerHTML = '<div class="no-selection">กรุณาเลือกประเภทก่อน แล้วคลิกเลือกโต๊ะจากผังด้านบน</div>';
+                return;
+            }
+            
+            seatingChart.style.display = 'block';
+            updateTableDisplay();
+            
+            seatingChart.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Form submission handler
+        document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!selectedTable) {
+                showError('กรุณาเลือกโต๊ะก่อนส่งฟอร์ม');
+                return;
+            }
+            
+            if (!isOnline) {
+                showError('ไม่สามารถลงทะเบียนได้ เนื่องจากระบบไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const loading = document.getElementById('loading');
+            
+            submitBtn.disabled = true;
+            loading.style.display = 'block';
+            loading.innerHTML = '<p>⏳ กำลังบันทึกข้อมูลลงทะเบียน...</p>';
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                agency: document.getElementById('agency').value,
+                type: document.getElementById('type').value,
+                phone: document.getElementById('phone').value,
+                seats: document.getElementById('seats').value,
+                table: selectedTable
+            };
+            
+            try {
+                const result = await submitToGoogleSheets(formData);
+                
+                loading.style.display = 'none';
+                submitBtn.disabled = false;
+                
+                if (result.success) {
+                    if (tableAvailability[selectedTable]) {
+                        tableAvailability[selectedTable].booked += parseInt(formData.seats);
+                        updateTableDisplay();
+                    }
+                    
+                    formData.ticketId = result.ticketId;
+                    formData.rowNumber = result.rowNumber;
+                    formData.timestamp = new Date().toLocaleString('th-TH', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit'
+                    });
+                    
+                    showSuccess('✅ ลงทะเบียนสำเร็จ! ข้อมูลถูกบันทึกใน Google Sheets แล้ว');
+                    showTicket(formData);
+                    document.getElementById('registrationForm').style.display = 'none';
+                    
+                    setTimeout(() => {
+                        loadTableAvailability();
+                    }, 2000);
+                    
+                } else {
+                    throw new Error('การบันทึกข้อมูลล้มเหลว');
+                }
+                
+            } catch (error) {
+                console.error('Submission error:', error);
+                loading.style.display = 'none';
+                submitBtn.disabled = false;
+                showError('❌ เกิดข้อผิดพลาด: ' + error.message);
+            }
+        });
+
+        function showTicket(data) {
+            generateQRCode(data);
+            
+            const capacity = selectedTable === 'A1-A2' ? 25 : 8;
+            const seatNumber = generateSeatNumber(data.table, capacity);
+            
+            document.getElementById('attendeeName').textContent = data.name;
+            document.getElementById('tableNumber').textContent = `โต๊ะ ${data.table}`;
+            document.getElementById('seatNumber').textContent = seatNumber;
+            
+            document.getElementById('ticket').style.display = 'block';
+            
+            document.getElementById('ticket').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Auto-refresh availability every 30 seconds
+        function startAutoRefresh() {
+            setInterval(async () => {
+                if (isOnline) {
+                    try {
+                        const serverAvailability = await loadTableAvailabilityFromSheets();
+                        if (serverAvailability) {
+                            tableAvailability = serverAvailability;
+                            updateTableDisplay();
+                            console.log('Table availability refreshed from server');
+                        }
+                    } catch (error) {
+                        console.error('Auto-refresh failed:', error);
+                    }
+                }
+            }, 30000);
+        }
+
+        // Generate QR Code
+        function generateQRCode(data) {
+            const qrData = JSON.stringify({
+                name: data.name,
+                agency: data.agency,
+                type: data.type,
+                phone: data.phone,
+                table: data.table,
+                seats: data.seats,
+                ticketId: data.ticketId,
+                timestamp: data.timestamp,
+                event: "ร้อยรักจากใจ...สายใยผูกพัน",
+                date: "19 สิงหาคม 2568",
+                time: "18:00-22:00",
+                venue: "ห้องพิมาน แกรนด์ บอลรูม"
+            });
+            
+            const qrCodeElement = document.getElementById('qrCode');
+            qrCodeElement.innerHTML = '';
+            
+            QRCode.toCanvas(qrCodeElement, qrData, {
+                width: 120,
+                height: 120,
+                margin: 1,
+                color: {
+                    dark: '#000000',
+                    light: '#FFFFFF'
+                }
+            }, function (error) {
+                if (error) {
+                    console.error('QR Code generation error:', error);
+                    qrCodeElement.innerHTML = `
+                        <div style="font-size: 8px; line-height: 1; font-family: monospace; color: #333;">
+                            ████████████<br>
+                            ██ ▄▄▄▄ ██<br>
+                            ██ ████ ██<br>
+                            ██ ▄▄▄▄ ██<br>
+                            ████████████<br>
+                            <div style="font-size: 6px; margin-top: 5px; color: #666;">
+                                ${data.ticketId}
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        // Generate seat number
+        function generateSeatNumber(tableId, capacity) {
+            const seatNum = Math.floor(Math.random() * capacity) + 1;
+            return `ที่นั่งที่ ${seatNum}`;
+        }
+
+        // Save and return to main page
+        function saveAndReturn() {
+            if (confirm('บันทึกการลงทะเบียนเรียบร้อยแล้ว\nต้องการกลับไปหน้าหลักหรือไม่?')) {
+                document.getElementById('ticket').style.display = 'none';
+                document.getElementById('registrationForm').style.display = 'block';
+                document.getElementById('bookingForm').reset();
+                selectedTable = null;
+                document.getElementById('selectedTableDisplay').classList.remove('has-selection');
+                document.getElementById('selectedTableDisplay').innerHTML = '<div class="no-selection">กรุณาเลือกประเภทก่อน แล้วคลิกเลือกโต๊ะจากผังด้านบน</div>';
+                updateTableOptions();
+                
+                setTimeout(() => {
+                    loadTableAvailability();
+                }, 1000);
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Test connection first
+            await testConnection();
+            
+            // Initialize components
+            initializeSeatingChart();
+            startAutoRefresh(); 
+            
+            // Add VIP table click listener
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('[data-table="A1-A2"]')) {
+                    selectTable('A1-A2', 25);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
